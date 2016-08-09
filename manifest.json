@@ -1,0 +1,53 @@
+{
+  "manifest_version" : 2,
+  "name" : "JaredLetGoAway",
+  "version" : "1.0",
+  "description" : "To hide all instances of Wacky Jared Leto on the Web",
+  "page_action" :
+  {
+      "default_title" : "Leto is lurking on this page",
+    "default_icon" : "images/logox19.png"
+  },
+  "permissions":
+  [
+    "tabs",
+    "storage"
+  ],
+  "content_scripts":
+  [
+    {
+      "matches" :
+      [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "exclude_globs" :
+      [
+        "*://*github.com*",
+        "*://*mail.google.com*"
+      ],
+      "jsscript" : ["js/jsquery-2.1.4.min.js", "js/filter.js"],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    }
+  ],
+  "icons" :
+  {
+    "16" : "images/logox16.png",
+    "19" : "images/logox19.png",
+    "48" : "images/logox48.png",
+    "120" : "images/logox120.png"
+  },
+  "background" :
+  {
+    "persistent" : false,
+    "page" : "background.html"
+  },
+  "settings_ui" :
+  {
+      "chrome_style" : true,
+      "page" : "settings.html"
+  },
+  "content_security_policy" : "script-src 'self' https://www.google-analytics.com; object-src 'self'"
+
+}
